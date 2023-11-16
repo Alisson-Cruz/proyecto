@@ -194,7 +194,7 @@ class TaskTile extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.lightBlue,
           decoration: isDone ? TextDecoration.lineThrough : null,
         ),
       ),
@@ -283,8 +283,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Detalles de la Tarea'),
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
