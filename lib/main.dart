@@ -359,7 +359,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               Text(
                 'Fecha y Hora: ${widget.task.dateTime?.toLocal().toString() ?? 'No Seleccionada'}',
               ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             if (_isEditing)
               TextField(
                 controller: _descriptionController,
