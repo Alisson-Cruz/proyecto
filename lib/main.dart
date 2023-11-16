@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,11 +12,7 @@ class Task {
   DateTime? dateTime;
   String description;
 
-  Task(
-      {required this.title,
-      this.isDone = false,
-      this.dateTime,
-      this.description = ''});
+  Task({required this.title, this.isDone = false, this.dateTime, this.description = ''});
 }
 
 class MyApp extends StatelessWidget {
@@ -43,29 +40,51 @@ class _TaskScreenState extends State<TaskScreen> {
     super.initState();
     _speech = SpeechToText();
     _speech.initialize(
-        onStatus: (status) {
-          if (status == SpeechToText.notifyErrorMethod) {
-            print('Error de inicialización');
-          }
-        },
-        onError: (error) => print('Error: $error'));
+      onStatus: (status) {
+        if (status == SpeechToText.notifyErrorMethod) {
+          print('Error de inicialización');
+        }
+      },
+      onError: (error) => print('Error: $error'),
+    );
+    loadTasks();
+  }
+
+  void loadTasks() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? taskTitles = prefs.getStringList('tasks');
+
+    if (taskTitles != null) {
+      setState(() {
+        tasks = taskTitles.map((title) => Task(title: title)).toList();
+      });
+    }
+  }
+
+  void saveTasks() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> taskTitles = tasks.map((task) => task.title).toList();
+    prefs.setStringList('tasks', taskTitles);
   }
 
   void addTask(String newTaskTitle) {
     setState(() {
       tasks.add(Task(title: newTaskTitle));
+      saveTasks();
     });
   }
 
   void toggleTask(int index) {
     setState(() {
       tasks[index].isDone = !tasks[index].isDone;
+      saveTasks();
     });
   }
 
   void deleteTask(int index) {
     setState(() {
       tasks.removeAt(index);
+      saveTasks();
     });
   }
 
@@ -81,6 +100,7 @@ class _TaskScreenState extends State<TaskScreen> {
   void editTaskDetails(int index, Task editedTask) {
     setState(() {
       tasks[index] = editedTask;
+      saveTasks();
     });
   }
 
@@ -196,6 +216,7 @@ class TaskTile extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
+          backgroundColor: Colors.lightBlue,
           decoration: isDone ? TextDecoration.lineThrough : null,
         ),
       ),
@@ -250,7 +271,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: Text('Agregar una tarea'),
+            child: Text('Agregar tarea'),
           ),
         ],
       ),
@@ -275,10 +296,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    _dateTimeController = TextEditingController(
-        text: widget.task.dateTime?.toLocal().toString() ?? '');
-    _descriptionController =
-        TextEditingController(text: widget.task.description);
+    _dateTimeController =
+        TextEditingController(text: widget.task.dateTime?.toLocal().toString() ?? '');
+    _descriptionController = TextEditingController(text: widget.task.description);
   }
 
   @override
@@ -287,6 +307,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Detalles de la Tarea'),
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
@@ -357,7 +378,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               Text(
                 'Fecha y Hora: ${widget.task.dateTime?.toLocal().toString() ?? 'No Seleccionada'}',
               ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
             if (_isEditing)
               TextField(
                 controller: _descriptionController,
@@ -374,7 +395,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
             const SizedBox(height: 10),
             Text(
-              'Estado: ${widget.task.isDone ? 'Completa' : 'Pendiente'}',
+              'Estado: ${widget.task.isDone ? 'Completada' : 'Pendiente'}',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
