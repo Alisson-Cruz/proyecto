@@ -110,7 +110,7 @@ class _TaskScreenState extends State<TaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tareas'),
+        title: Text('App de Tareas'),
         backgroundColor: Colors.green,
       ),
       body: Column(
