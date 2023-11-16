@@ -196,7 +196,6 @@ class TaskTile extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-          backgroundColor: Colors.lightBlue,
           decoration: isDone ? TextDecoration.lineThrough : null,
         ),
       ),
