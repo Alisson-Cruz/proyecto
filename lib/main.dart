@@ -251,7 +251,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: Text('Agregar tarea'),
+            child: Text('Agregar una tarea'),
           ),
         ],
       ),
@@ -358,7 +358,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               Text(
                 'Fecha y Hora: ${widget.task.dateTime?.toLocal().toString() ?? 'No Seleccionada'}',
               ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             if (_isEditing)
               TextField(
                 controller: _descriptionController,
@@ -375,7 +375,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
             const SizedBox(height: 10),
             Text(
-              'Estado: ${widget.task.isDone ? 'Completada' : 'Pendiente'}',
+              'Estado: ${widget.task.isDone ? 'Completa' : 'Pendiente'}',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
