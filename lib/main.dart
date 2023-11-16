@@ -126,12 +126,13 @@ class _TaskScreenState extends State<TaskScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
         onPressed: _isListening ? stopListening : startListening,
         tooltip: 'Agregar tarea por voz',
         child: Icon(
           _isListening ? Icons.stop : Icons.mic,
+          color: Colors.white,
         ),
-
       ),
     );
   }
@@ -250,8 +251,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: const Text('Agregar tarea'),
-
+            child: Text('Agregar tarea'),
           ),
         ],
       ),
