@@ -11,7 +11,11 @@ class Task {
   DateTime? dateTime;
   String description;
 
-  Task({required this.title, this.isDone = false, this.dateTime, this.description = ''});
+  Task(
+      {required this.title,
+      this.isDone = false,
+      this.dateTime,
+      this.description = ''});
 }
 
 class MyApp extends StatelessWidget {
@@ -38,11 +42,13 @@ class _TaskScreenState extends State<TaskScreen> {
   void initState() {
     super.initState();
     _speech = SpeechToText();
-    _speech.initialize(onStatus: (status) {
-      if (status == SpeechToText.notifyErrorMethod) {
-        print('Error de inicialización');
-      }
-    }, onError: (error) => print('Error: $error'));
+    _speech.initialize(
+        onStatus: (status) {
+          if (status == SpeechToText.notifyErrorMethod) {
+            print('Error de inicialización');
+          }
+        },
+        onError: (error) => print('Error: $error'));
   }
 
   void addTask(String newTaskTitle) {
@@ -105,6 +111,7 @@ class _TaskScreenState extends State<TaskScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tareas'),
+        backgroundColor: Colors.green,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -121,7 +128,9 @@ class _TaskScreenState extends State<TaskScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: _isListening ? stopListening : startListening,
         tooltip: 'Agregar tarea por voz',
-        child: Icon(_isListening ? Icons.stop : Icons.mic),
+        child: Icon(
+          _isListening ? Icons.stop : Icons.mic,
+        ),
       ),
     );
   }
@@ -133,7 +142,11 @@ class TaskList extends StatelessWidget {
   final Function(int) onDelete;
   final Function(Task) onViewDetails;
 
-  TaskList({required this.tasks, required this.onToggle, required this.onDelete, required this.onViewDetails});
+  TaskList(
+      {required this.tasks,
+      required this.onToggle,
+      required this.onDelete,
+      required this.onViewDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +181,12 @@ class TaskTile extends StatelessWidget {
   final VoidCallback onDelete;
   final VoidCallback onViewDetails;
 
-  TaskTile({required this.title, required this.isDone, required this.onToggle, required this.onDelete, required this.onViewDetails});
+  TaskTile(
+      {required this.title,
+      required this.isDone,
+      required this.onToggle,
+      required this.onDelete,
+      required this.onViewDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +194,7 @@ class TaskTile extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
+          backgroundColor: Colors.green,
           decoration: isDone ? TextDecoration.lineThrough : null,
         ),
       ),
@@ -255,8 +274,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    _dateTimeController = TextEditingController(text: widget.task.dateTime?.toLocal().toString() ?? '');
-    _descriptionController = TextEditingController(text: widget.task.description);
+    _dateTimeController = TextEditingController(
+        text: widget.task.dateTime?.toLocal().toString() ?? '');
+    _descriptionController =
+        TextEditingController(text: widget.task.description);
   }
 
   @override
@@ -317,7 +338,8 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
                             setState(() {
                               widget.task.dateTime = pickedDateTime;
-                              _dateTimeController.text = pickedDateTime!.toLocal().toString();
+                              _dateTimeController.text =
+                                  pickedDateTime!.toLocal().toString();
                             });
                           }
                         }
