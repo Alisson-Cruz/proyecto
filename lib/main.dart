@@ -263,7 +263,7 @@ class TaskInput extends StatelessWidget {
                 newTaskTitle = value;
               },
               decoration: const InputDecoration(
-                hintText: 'Ingrese una nueva tarea',
+                hintText: 'Ingrese una tarea',
               ),
             ),
           ),
