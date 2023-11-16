@@ -328,7 +328,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               'Tarea: ${widget.task.title}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             if (_isEditing)
               Row(
                 children: [
