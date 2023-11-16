@@ -376,7 +376,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
             const SizedBox(height: 10),
             Text(
-              'Estado: ${widget.task.isDone ? 'Completada' : 'Pendiente'}',
+              'Estado: ${widget.task.isDone ? 'Completa' : 'Pendiente'}',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
