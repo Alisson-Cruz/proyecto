@@ -306,7 +306,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Detalles de la Tarea'),
+        title: const Text('Detalles de la tarea'),
         backgroundColor: Colors.green,
         actions: [
           IconButton(
