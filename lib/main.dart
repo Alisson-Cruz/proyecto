@@ -249,7 +249,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: const Text('Agregar'),
+            child: const Text('Agregar tarea'),
           ),
         ],
       ),
