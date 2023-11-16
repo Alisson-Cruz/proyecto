@@ -120,7 +120,8 @@ class _TaskScreenState extends State<TaskScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _isListening ? stopListening : startListening,
-        tooltip: 'Agregar tarea por voz',
+        tooltip: 'Agrega una tarea por voz',
+        //
         child: Icon(_isListening ? Icons.stop : Icons.mic),
       ),
     );
