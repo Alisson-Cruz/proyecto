@@ -240,7 +240,7 @@ class TaskInput extends StatelessWidget {
               onChanged: (value) {
                 newTaskTitle = value;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Ingrese una nueva tarea',
               ),
             ),
@@ -249,7 +249,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: Text('Agregar'),
+            child: const Text('Agregar'),
           ),
         ],
       ),
@@ -284,7 +284,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalles de la Tarea'),
+        title: const Text('Detalles de la Tarea'),
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
@@ -303,9 +303,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           children: [
             Text(
               'Tarea: ${widget.task.title}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             if (_isEditing)
               Row(
                 children: [
@@ -344,7 +344,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           }
                         }
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Fecha y Hora',
                       ),
                     ),
@@ -355,14 +355,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               Text(
                 'Fecha y Hora: ${widget.task.dateTime?.toLocal().toString() ?? 'No seleccionada'}',
               ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             if (_isEditing)
               TextField(
                 controller: _descriptionController,
                 onChanged: (value) {
                   widget.task.description = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Descripción',
                 ),
               )
@@ -370,10 +370,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               Text(
                 'Descripción: ${widget.task.description}',
               ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Estado: ${widget.task.isDone ? 'Completada' : 'Pendiente'}',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),
