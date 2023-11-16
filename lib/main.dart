@@ -288,7 +288,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Detalles de la Tarea'),
-        backgroundColor: Colors.green,
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
