@@ -251,7 +251,7 @@ class TaskInput extends StatelessWidget {
             onPressed: () {
               onAddTask(newTaskTitle);
             },
-            child: Text('Agregar tarea'),
+            child: Text('Agregar una tarea'),
           ),
         ],
       ),
